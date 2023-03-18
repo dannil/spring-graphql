@@ -11,6 +11,7 @@ import reactor.core.publisher.Sinks;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -43,6 +44,16 @@ public class PersonService {
 
         personSink.tryEmitNext(person);
 
+        return person;
+    }
+
+    public Optional<Person> deletePerson(String id) {
+        Optional<Person> person = Optional.ofNullable(persons.get(id));
+        if (person.isPresent()) {
+            persons.remove(id);
+
+            personSink.tryEmitNext(person.get());
+        }
         return person;
     }
 

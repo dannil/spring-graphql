@@ -21,6 +21,7 @@ type Query {
 
 type Mutation {
     addPerson(id: String!, firstName: String!, lastName: String!, address: AddressInput!): Person!
+    deletePerson(id: String!): Person
 }
 
 type Subscription {

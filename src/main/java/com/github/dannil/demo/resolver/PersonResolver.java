@@ -34,6 +34,11 @@ public class PersonResolver {
         return personService.addPerson(id, firstName, lastName, address);
     }
 
+    @MutationMapping
+    public Optional<Person> deletePerson(@Argument String id) {
+        return personService.deletePerson(id);
+    }
+
     @SubscriptionMapping
     public Publisher<Person> personSubscription() {
         return personService.notifyChange();
