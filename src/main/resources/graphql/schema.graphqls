@@ -2,10 +2,11 @@ type Person {
     id: ID!
     firstName: String!
     lastName: String!
-    address: Address!
+    addresses: [Address!]!
 }
 
 type Address {
+    id: ID!
     street: String!
     zipCode: String!
 }
@@ -20,7 +21,7 @@ type Query {
 }
 
 type Mutation {
-    addPerson(id: String!, firstName: String!, lastName: String!, address: AddressInput!): Person!
+    addPerson(id: String!, firstName: String!, lastName: String!, address: [AddressInput!]!): Person!
     deletePerson(id: String!): Person
 }
 

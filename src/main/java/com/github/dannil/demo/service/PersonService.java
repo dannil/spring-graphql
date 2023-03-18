@@ -26,8 +26,8 @@ public class PersonService {
 
     public PersonService() {
         persons = new HashMap<>();
-        persons.put("1", new Person("1", "Bob", "Ferguson", new Address("Baker Street 45", "175-42")));
-        persons.put("2", new Person("2", "Alice", "Matthews", new Address("Diagonal Alley", "13 BEF-97")));
+        persons.put("1", new Person("1", "Bob", "Ferguson"));
+        persons.put("2", new Person("2", "Alice", "Matthews"));
     }
 
     public Collection<Person> getPersons() {
@@ -38,8 +38,8 @@ public class PersonService {
         return persons.get(id);
     }
 
-    public Person addPerson(String id, String firstName, String lastName, Address address) {
-        Person person = new Person(id, firstName, lastName, address);
+    public Person addPerson(String id, String firstName, String lastName) {
+        Person person = new Person(id, firstName, lastName);
         persons.put(id, person);
         personSink.tryEmitNext(person);
         return person;
