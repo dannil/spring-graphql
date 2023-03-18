@@ -41,9 +41,7 @@ public class PersonService {
     public Person addPerson(String id, String firstName, String lastName, Address address) {
         Person person = new Person(id, firstName, lastName, address);
         persons.put(id, person);
-
         personSink.tryEmitNext(person);
-
         return person;
     }
 
@@ -51,7 +49,6 @@ public class PersonService {
         Optional<Person> person = Optional.ofNullable(persons.get(id));
         if (person.isPresent()) {
             persons.remove(id);
-
             personSink.tryEmitNext(person.get());
         }
         return person;
