@@ -24,7 +24,8 @@ public class PersonResolver {
     @QueryMapping
     public Collection<Person> persons(@Argument Optional<String> id) {
         if (id.isPresent()) {
-            return List.of(personService.getPerson(id.get()));
+            Optional<Person> person = personService.getPerson(id.get());
+            return person.map(List::of).orElseGet(List::of);
         }
         return personService.getPersons();
     }
@@ -41,7 +42,7 @@ public class PersonResolver {
 
     @SubscriptionMapping
     public Publisher<Person> personSubscription() {
-        return personService.notifyChange();
+        return personService.listen();
     }
 
 }
